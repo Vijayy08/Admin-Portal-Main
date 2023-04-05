@@ -1,7 +1,7 @@
 import useSWR from 'swr'
  
   
-   const fetcher = (url: string) =>fetch(url).then((res) => {console.log(res) ;return res.json()})
+   const fetcher = (url: string) =>fetch(url).then((res) => {return res.json()})
   
 
  export const useSampleClients =  () => {
@@ -17,20 +17,26 @@ import useSWR from 'swr'
     isError: error,
   }
 }
-export const useSampleIngredients = () => {
-  const { data, error } = useSWR('http://3.13.92.74:30009/master-data/admin/ingredient', fetcher)
+export const useSampleIngredients = (pageNumber: number) => {
+  const { data, error } = useSWR(
+    `http://3.13.92.74:30009/master-data/admin/ingredient?pageNumber=${pageNumber}&pageSize=5`,
+    fetcher
+  )
   const ingredients = data ?? []
-   console.log(ingredients)
+  console.log(ingredients)
   return {
     ingredients,
     isLoading: !error && !data,
     isError: error,
   }
 }
-export const useSampleFormulations = () => {
-  const { data, error } = useSWR('http://3.13.92.74:30009/master-data/admin/formulation', fetcher)
+export const useSampleFormulations = (pageNumber:number) => {
+  const { data, error } = useSWR(
+    'http://3.13.92.74:30009/master-data/admin/formulation?pageNumber=${pageNumber}&pageSize=5',
+    fetcher
+  )
   const formulations = data ?? []
-  console.log(formulations)
+ 
   return {
     formulations,
     isLoading: !error && !data,
@@ -43,6 +49,36 @@ export const useSampleYogas = () => {
   console.log(yogas)
   return {
     yogas,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+export const useSampleSurgery = () => {
+  const { data, error } = useSWR('http://3.13.92.74:30009/master-data/admin/surgery', fetcher)
+  const surgery = data ?? []
+  console.log(surgery)
+  return {
+    surgery,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+export const useSampleSymptom = () => {
+  const { data, error } = useSWR('http://3.13.92.74:30009/master-data/admin/symptom', fetcher)
+  const symptom = data ?? []
+  console.log(symptom)
+  return {
+    symptom,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+export const useSampleDisease = () => {
+  const { data, error } = useSWR('http://3.13.92.74:30009/master-data/admin/disease', fetcher)
+  const disease = data ?? []
+  console.log(disease)
+  return {
+    disease,
     isLoading: !error && !data,
     isError: error,
   }
