@@ -3,9 +3,9 @@ import BaseButton from '../components/BaseButton'
 import LayoutAuthenticated from '../layouts/Authenticated'
 import SectionMain from '../components/SectionMain'
 import CardBox from '../components/CardBox'
-import YogaItem from '../components/YogaItem'
-import { useSampleYogas } from '../hooks/sampleData'
-import { Yoga } from '../interfaces'
+import DiseaseItem from '../components/DiseaseItem'
+import { useSampleDisease } from '../hooks/sampleData'
+import { Disease } from '../interfaces'
 import { mdiSearchWeb, mdiUpload } from '@mdi/js'
 const TablesPage = () => {
   const [searchOption, setSearchOption] = useState('')
@@ -19,18 +19,19 @@ const TablesPage = () => {
   const handleUploadButtonClick = async () => {
     if (selectedFile) {
       const formData = new FormData()
-      formData.append('file', selectedFile)
+      formData.append('diseaseCsvFile', selectedFile)
 
       try {
-        const response = await fetch('http://3.13.92.74:30009/master-data/admin/yoga/yoga.csv', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            accept: 'application/json',
-            'X-USER-ID': '1',
-            'Content-Type': 'multipart/form-data',
-          },
-        })
+        const response = await fetch(
+          'http://3.13.92.74:30009/master-data/admin/disease/disease.csv',
+          {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-USER-ID': '1',
+            },
+          }
+        )
         if (response.ok) {
           console.log('File uploaded successfully')
           setSelectedFile(null)
@@ -42,16 +43,16 @@ const TablesPage = () => {
       }
     }
   }
-  const { yogas } = useSampleYogas()
-  const data = yogas && yogas.response ? yogas.response : []
+  const { disease } = useSampleDisease()
+  const data = disease && disease.response ? disease.response : []
 
   const handleSearchClick = async () => {
     try {
       let url
       if (searchOption === 'id') {
-        url = `http://3.13.92.74:30009/master-data/admin/yoga/id`
+        url = `http://3.13.92.74:30009/master-data/admin/disease/id`
       } else {
-        url = `http://3.13.92.74:30009/master-data/admin/yoga/name`
+        url = `http://3.13.92.74:30009/master-data/admin/disease/name`
       }
       const response = await fetch(url, {
         method: 'GET',
@@ -64,18 +65,13 @@ const TablesPage = () => {
         const data = await response.json()
         console.log(data)
       } else {
-        console.error('Error searching for ingredients')
+        console.error('Error searching for formulations')
       }
     } catch (error) {
       console.error(error)
     }
   }
-  const yoga= {
-    id: '0ab3f975-a3d6-42d2-86c6-04146cf08b55',
-    status: 1,
-    name: 'Asana',
-    
-  }
+
   return (
     <>
       <SectionMain>
@@ -111,10 +107,11 @@ const TablesPage = () => {
           </div>
         </CardBox>
         <CardBox className="mb-6">
-          <YogaItem yoga={yoga} />
-          {/* {data.map((yoga: Yoga) => (
-            <YogaItem key={yoga.id} yoga={yoga} />
-          ))} */}
+          {data.map((disease: Disease) => (
+            <CardBox className="mb-6">
+              <DiseaseItem key={disease.id} disease={disease} />
+            </CardBox>
+          ))}
         </CardBox>
       </SectionMain>
     </>

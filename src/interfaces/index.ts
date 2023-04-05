@@ -3,7 +3,7 @@ export type UserPayloadObject = {
   email: string
   avatar: string
 }
-
+ 
 export type MenuAsideItem = {
   label: string
   icon?: string
@@ -93,6 +93,27 @@ export type Yoga={
   status:number
   name:string
 }
+export type Surgery = {
+  id: string
+  status: number
+  name: string
+}
+export type Symptom = {
+  id: string
+  status: number
+  name: string
+}
+export type Disease = {
+  id: string
+  status: number
+  name: string
+  description: string
+  pathophysiologicalGoalIdList: null | any[]
+  formulationIdList: string[]
+
+  formulationList: null | any[]
+}
+
 
 export type StyleKey = 'white' | 'basic'
 

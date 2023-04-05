@@ -95,25 +95,32 @@ function IngredientItem({ ingredient }) {
       ) : (
         <>
           <h2 className="text-lg font-medium">
-            <span className="font-bold">Name:</span> {name}
+            <span className="font-bold">Name:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{name}</p>
           </h2>
           <h2 className="text-lg font-medium">
-            <span className="font-bold">SanskritName:</span> {sanskritName}
+            <span className="font-bold">SanskritName:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{sanskritName}</p>
           </h2>
           <p className="text-lg font-medium">
-            <span className="font-bold">Description: </span> {description}
+            <span className="font-bold">Description: </span>
+            <p className="border border-gray-400 p-1 rounded-sm">{description}</p>
           </p>
           <p className="text-lg font-medium">
-            <span className="font-bold">Quantity:</span> {quantity}
+            <span className="font-bold">Quantity:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{quantity}</p>
           </p>
           <p className="text-lg font-medium">
-            <span className="font-bold">Rasa:</span> {rasa}
+            <span className="font-bold">Rasa:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{rasa}</p>
           </p>
           <p className="text-lg font-medium">
-            <span className="font-bold">Guna:</span> {guna}
+            <span className="font-bold">Guna:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{guna}</p>
           </p>
           <p className="text-lg font-medium">
-            <span className="font-bold">Vipaka:</span> {vipaka}
+            <span className="font-bold">Vipaka:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{vipaka}</p>
           </p>
           <div className="flex justify-end space-x-4 mt-4">
             <button

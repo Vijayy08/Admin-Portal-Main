@@ -6,9 +6,11 @@ function FormulationItem({ formulation }) {
   const [shortDescription, setShortdescription] = useState(formulation.shortDescription)
   const [longDescription, setLongdescription] = useState(formulation.longDescription)
   const [thumbnailImage, setThumbnailImage] = useState(formulation.thumbnailImage)
-  const [ingredientIdList,setIngredientIdList]=useState(formulation.ingredientIdList.join(','))
-  const [metaData,setMetaData]=useState(formulation.metaData.sellerProductId)
-  const [imageList,setImageList]=useState(formulation.imageList.join(','))
+  const [ingredientIdList, setIngredientIdList] = useState(
+    formulation.ingredientIdList ? formulation.ingredientIdList.join(',') : ''
+  )
+  const [metaData,setMetaData]=useState(formulation.metaData?formulation.metaData.sellerProductId:'')
+  const [imageList,setImageList]=useState(formulation.imageList?formulation.imageList.join(','):'')
   const handleEditClick = () => {
     setEditing(true)
   }
@@ -67,6 +69,16 @@ function FormulationItem({ formulation }) {
             />
           </p>
           <p className="text-lg font-medium">
+            <span className="font-bold">Ingredient List:</span>{' '}
+            <textarea
+              value={ingredientIdList}
+              onChange={(e) => setIngredientIdList(e.target.value)}
+              className="border border-gray-400 p-1 rounded-sm"
+              rows={4}
+              style={{ width: '1000px' }}
+            />
+          </p>
+          <p className="text-lg font-medium">
             <span className="font-bold">Seller Product ID:</span>{' '}
             <textarea
               value={metaData}
@@ -79,7 +91,7 @@ function FormulationItem({ formulation }) {
           <p className="text-lg font-medium">
             <span className="font-bold">Image List:</span>{' '}
             <textarea
-              value={metaData}
+              value={imageList}
               onChange={(e) => setImageList(e.target.value)}
               className="border border-gray-400 p-1 rounded-sm"
               rows={1}
@@ -98,29 +110,33 @@ function FormulationItem({ formulation }) {
       ) : (
         <>
           <h2 className="text-lg font-medium">
-            <span className="font-bold">Name:</span> {name}
+            <span className="font-bold">Name:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{name}</p>
           </h2>
           <h2 className="text-lg font-medium">
-            <span className="font-bold">ShortDescription:</span> {shortDescription}
+            <span className="font-bold">ShortDescription:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{shortDescription}</p>
           </h2>
-          <p className="text-lg font-medium">
-            <span className="font-bold">LongDescription: </span> {longDescription}
-          </p>
-          <p className="text-lg font-medium">
-            <span className="font-bold">ThumbnailImage:</span> {thumbnailImage}
-          </p>
-          <p className="text-lg font-medium">
+          <h2 className="text-lg font-medium">
+            <span className="font-bold">LongDescription: </span>
+            <p className="border border-gray-400 p-1 rounded-sm"> {longDescription}</p>
+          </h2>
+          <h2 className="text-lg font-medium">
+            <span className="font-bold">ThumbnailImage:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{thumbnailImage}</p>
+          </h2>
+          <h2 className="text-lg font-medium">
             <span className="font-bold">Ingredient IDs:</span>
-            {ingredientIdList}
-          </p>
-          <p className="text-lg font-medium">
+            <p className="border border-gray-400 p-1 rounded-sm">{ingredientIdList}</p>
+          </h2>
+          <h2 className="text-lg font-medium">
             <span className="font-bold">Seller Product ID:</span>
-            {metaData}
-          </p>
-          <p className="text-lg font-medium">
+            <p className="border border-gray-400 p-1 rounded-sm">{metaData}</p>
+          </h2>
+          <h2 className="text-lg font-medium">
             <span className="font-bold">Image List:</span>
-            {imageList}
-          </p>
+            <p className="border border-gray-400 p-1 rounded-sm">{imageList}</p>
+          </h2>
           <div className="flex justify-end space-x-4 mt-4">
             <button
               className="bg-blue-500 text-white py-2 px-4 rounded-md"

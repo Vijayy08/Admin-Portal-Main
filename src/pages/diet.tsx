@@ -19,16 +19,16 @@ const TablesPage = () => {
   const handleUploadButtonClick = async () => {
     if (selectedFile) {
       const formData = new FormData()
-      formData.append('file', selectedFile)
+      formData.append('dietCsvFile', selectedFile)
 
       try {
         const response = await fetch('http://3.13.92.74:30009/master-data/admin/diet/diet.csv', {
           method: 'POST',
           body: formData,
           headers: {
-            accept: 'application/json',
+            
             'X-USER-ID': '1',
-            'Content-Type': 'multipart/form-data',
+            
           },
         })
         if (response.ok) {
@@ -42,8 +42,8 @@ const TablesPage = () => {
       }
     }
   }
-  // const { diets } = useSampleDiets()
-  // const data = diets && diets.response ? diets.response : []
+  const { diets } = useSampleDiets()
+  const data = diets && diets.response ? diets.response : []
 
   const handleSearchClick = async () => {
     try {
@@ -281,10 +281,12 @@ const TablesPage = () => {
           </div>
         </CardBox>
         <CardBox className="mb-6">
-          <DietItem diet={diet} />
-          {/* {data.map((diet) => (
+          {/* <DietItem diet={diet} /> */}
+          {data.map((diet) => (
+             <CardBox className="mb-6">
             <DietItem key={diet.id} diet={diet} />
-          ))} */}
+            </CardBox>
+          ))}
         </CardBox>
       </SectionMain>
     </>
