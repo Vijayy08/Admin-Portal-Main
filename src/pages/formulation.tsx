@@ -49,10 +49,17 @@ const TablesPage = () => {
   }
   const [pageNumber, setPageNumber] = useState(0)
   const { formulations } = useSampleFormulations(pageNumber)
-  console.log(formulations)
+  const handlePrevClick = () => {
+    setPageNumber(pageNumber - 1)
+  }
+  const handleNextClick = () => {
+    setPageNumber(pageNumber + 1)
+  }
+  
   const [data, setData] = useState([])
-  console.log(data)
+  
   const originalData = formulations && formulations.response ? formulations.response : []
+  const totalPages = formulations && formulations.totalPages ? formulations.totalPages : 0
 
   const handleSearchClick = async () => {
     try {
@@ -61,28 +68,69 @@ const TablesPage = () => {
       if (searchOption === 'id') {
        if (searchId) {
          url = `http://3.13.92.74:30009/master-data/admin/formulation/id/${searchId}`
+         const response = await fetch(url, {
+           method: 'GET',
+           headers: {
+             'X-USER-ID': '1',
+           },
+         })
+         if (response.ok) {
+           const formulation = await response.json()
+           console.log(formulation)
+           setData([formulation.response])
+         } else {
+           console.error('Error searching for formulations')
+         }
        } else {
          console.error('Please enter an ID to search')
          return
        }
-      } else {
+      } else if(searchOption=='name'){
         url = `http://3.13.92.74:30009/master-data/admin/formulation/name/${searchId}`
-        
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'X-USER-ID': '1',
+          },
+        })
+        if (response.ok) {
+          const formulation = await response.json()
+          console.log(formulation)
+          setData([formulation.response])
+        } else {
+          console.error('Error searching for formulations')
+        }
       }
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
+      else{
+        url = `http://3.13.92.74:30009/master-data/admin/formulation/regex/name/${searchId}`
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'X-USER-ID': '1',
+          },
+        })
+        if (response.ok) {
+          const formulation = await response.json()
+          console.log(formulation)
+          setData([formulation.response[0]])
+        } else {
+          console.error('Error searching for formulations')
+        }
+      }
+      // const response = await fetch(url, {
+      //   method: 'GET',
+      //   headers: {
           
-          'X-USER-ID': '1',
-        },
-      })
-      if (response.ok) {
-        const formulation = await response.json()
-       
-         setData([formulation.response])
-      } else {
-        console.error('Error searching for formulations')
-      }
+      //     'X-USER-ID': '1',
+      //   },
+      // })
+      // if (response.ok) {
+      //   const formulation = await response.json()
+      //     console.log(formulation)
+      //    setData([formulation.response])
+      // } else {
+      //   console.error('Error searching for formulations')
+      // }
     } catch (error) {
       console.error(error)
     }
@@ -104,6 +152,7 @@ const TablesPage = () => {
                 <option value="">Select an option</option>
                 <option value="id">By ID</option>
                 <option value="name">By Name</option>
+                <option value="regex">By Regex</option>
               </select>
               {searchOption === 'id' && (
                 <div className="flex justify-end">
@@ -122,6 +171,18 @@ const TablesPage = () => {
                   <input
                     type="text"
                     placeholder="Enter name"
+                    value={searchId}
+                    onChange={(e) => setSearchId(e.target.value)}
+                    className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
+                    style={{ width: '200px' }}
+                  />
+                </div>
+              )}
+              {searchOption === 'regex' && (
+                <div className="flex justify-end">
+                  <input
+                    type="text"
+                    placeholder="Enter regex"
                     value={searchId}
                     onChange={(e) => setSearchId(e.target.value)}
                     className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
@@ -148,6 +209,7 @@ const TablesPage = () => {
           </div>
         </CardBox>
         <CardBox className="mb-6">
+          {console.log(data)}
           {searchId.length > 0
             ? data.map((formulation: Formulation) => (
                 <CardBox className="mb-6">
@@ -159,7 +221,26 @@ const TablesPage = () => {
                   <FormulationItem key={formulation.id} formulation={formulation} />
                 </CardBox>
               ))}
-          
+        </CardBox>
+        <CardBox>
+          <div className="flex justify-center mt-6">
+            <button
+              className="mr-2 px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"
+              onClick={handlePrevClick}
+              disabled={pageNumber === 0}
+              style={{ opacity: pageNumber === 0 ? 0.5 : 1 }}
+            >
+              Prev
+            </button>
+            <button
+              className="px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"
+              onClick={handleNextClick}
+              disabled={pageNumber === totalPages - 1}
+              style={{ opacity: pageNumber === totalPages - 1 ? 0.5 : 1 }}
+            >
+              Next
+            </button>
+          </div>
         </CardBox>
       </SectionMain>
     </>

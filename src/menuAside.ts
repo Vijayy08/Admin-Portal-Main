@@ -22,22 +22,21 @@ const menuAside: MenuAsideItem[] = [
       { href: '/ingredient', label: 'Ingredient', icon: mdiLeaf },
       { href: '/diet', label: 'Diet', icon: mdiFood },
       { href: '/oil', label: 'Oil', icon: mdiOil },
-      { href: '/disease', label: 'Disease', icon: mdiMedication},
+      { href: '/disease', label: 'Disease', icon: mdiMedication },
       { href: '/pulses', label: 'Pulses', icon: mdiFood },
-      
-      { href: '/nonVeg', label: 'NonVeg', icon: mdiFoodDrumstick },
+      { href: '/ppg', label: 'PathophysiologicalGoal', icon: mdiFood },
+      { href: '/nonveg', label: 'NonVeg', icon: mdiFoodDrumstick },
       { href: '/fruit', label: 'Fruit', icon: mdiFood },
-      
-     
-      { href: '/vegetable', label: 'Vegetable', icon: mdiLeafCircle},
+      { href: '/yoga', label: 'Yoga', icon: mdiYoga },
+      { href: '/vegetable', label: 'Vegetable', icon: mdiLeafCircle },
       { href: '/otherFood', label: 'OtherFood', icon: mdiFood },
       { href: '/diary', label: 'Diary', icon: mdiCow },
       { href: '/spice', label: 'Spice', icon: mdiFood },
       { href: '/veganfood', label: 'VeganFood', icon: mdiFood },
-     
+
       { href: '/sweetner', label: 'Sweetner', icon: mdiFood },
       { href: '/cereal', label: 'Cereal', icon: mdiFood },
-      { href: '/weekdiet', label: 'WeekDiet', icon: mdiFood }
+      { href: '/weekdiet', label: 'WeekDiet', icon: mdiFood },
     ],
   },
 

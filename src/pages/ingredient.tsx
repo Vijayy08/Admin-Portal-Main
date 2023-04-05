@@ -66,26 +66,56 @@ const handleSearchClick = async () => {
      if (searchOption === 'id') {
        if (searchId) {
          url = `http://3.13.92.74:30009/master-data/admin/ingredient/id/${searchId}`
+         const response = await fetch(url, {
+           method: 'GET',
+           headers: {
+             'X-USER-ID': '1',
+           },
+         })
+         if (response.ok) {
+           const ingredient = await response.json()
+           console.log(ingredient)
+           setData([ingredient.response])
+         } else {
+           console.error('Error searching for formulations')
+         }
        } else {
          console.error('Please enter an ID to search')
          return
        }
-     } else {
+     } else if(searchOption=='name') {
        url = `http://3.13.92.74:30009/master-data/admin/ingredient/name/${searchId}`
-     }
-     const response = await fetch(url, {
-       method: 'GET',
-       headers: {
-         'X-USER-ID': '1',
-       },
-     })
-     if (response.ok) {
-       const ingredient = await response.json()
+       const response = await fetch(url, {
+         method: 'GET',
+         headers: {
+           'X-USER-ID': '1',
+         },
+       })
+       if (response.ok) {
+         const ingredient = await response.json()
+         console.log(ingredient)
+         setData([ingredient.response])
+       } else {
+         console.error('Error searching for formulations')
+       }
 
-       setData([ingredient.response])
-     } else {
-       console.error('Error searching for formulations')
+     }else{
+       url = `http://3.13.92.74:30009/master-data/admin/ingredient/regex/name/${searchId}`
+      const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'X-USER-ID': '1',
+          },
+        })
+        if (response.ok) {
+          const ingredient = await response.json()
+          console.log(ingredient)
+          setData([ingredient.response[0]])
+        } else {
+          console.error('Error searching for formulations')
+        }
      }
+    
    } catch (error) {
      console.error(error)
    }
@@ -106,6 +136,7 @@ const handleSearchClick = async () => {
                <option value="">Select an option</option>
                <option value="id">By ID</option>
                <option value="name">By Name</option>
+               <option value="regex">By Regex</option>
              </select>
              {searchOption === 'id' && (
                <div className="flex justify-end">
@@ -124,6 +155,18 @@ const handleSearchClick = async () => {
                  <input
                    type="text"
                    placeholder="Enter name"
+                   value={searchId}
+                   onChange={(e) => setSearchId(e.target.value)}
+                   className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
+                   style={{ width: '200px' }}
+                 />
+               </div>
+             )}
+             {searchOption === 'regex' && (
+               <div className="flex justify-end">
+                 <input
+                   type="text"
+                   placeholder="Enter regex"
                    value={searchId}
                    onChange={(e) => setSearchId(e.target.value)}
                    className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
@@ -151,17 +194,17 @@ const handleSearchClick = async () => {
        </CardBox>
 
        <CardBox className="mb-6">
-        {searchId.length > 0
-            ? data.map((ingredient: Ingredient) => (
-                <CardBox className="mb-6">
-                  <IngredientItem key={ingredient.id} ingredient={ingredient} />
-                </CardBox>
-              ))
-         :originalData.map((ingredient: Ingredient) => (
-           <CardBox className="mb-6">
-             <IngredientItem key={ingredient.id} ingredient={ingredient} />
-           </CardBox>
-         ))}
+         {searchId.length > 0
+           ? data.map((ingredient: Ingredient) => (
+               <CardBox className="mb-6">
+                 <IngredientItem key={ingredient.id} ingredient={ingredient} />
+               </CardBox>
+             ))
+           : originalData.map((ingredient: Ingredient) => (
+               <CardBox className="mb-6">
+                 <IngredientItem key={ingredient.id} ingredient={ingredient} />
+               </CardBox>
+             ))}
        </CardBox>
        <CardBox>
          <div className="flex justify-center mt-6">

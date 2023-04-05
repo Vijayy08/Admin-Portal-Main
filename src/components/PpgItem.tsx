@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 
-function DiseaseItem({ disease }) {
+function PpgItem({ ppg }) {
   const [editing, setEditing] = useState(false)
-  const [name, setName] = useState(disease.name)
-  const [description, setDescription] = useState(disease.description)
-  const [pathophysiologicalGoalIdList, setPathophysiologicalGoalIdList] = useState(
-    disease.pathophysiologicalGoalIdList
-  )
-  const [formulationIdList, setFormulationIdList] = useState(disease.formulationIdList?disease.formulationIdList.join(','):'')
-  
-  
- 
+  const [name, setName] = useState(ppg.name)
+ const [sanskritName, setSanskritName] = useState(ppg.sanskritName)
+ const [formulationIdList, setFormulationIdList] = useState(
+   ppg.formulationIdList ? ppg.formulationIdList.join(',') : ''
+ )
   const handleEditClick = () => {
     setEditing(true)
   }
@@ -18,7 +14,7 @@ function DiseaseItem({ disease }) {
   const handleUpdateClick = async () => {
     try {
       const response = await fetch(
-        `http://3.13.92.74:30009/master-data/admin/disease/id/${disease.id}`,
+        `http://3.13.92.74:30009/master-data/admin/pathophysiological-goal/id/${ppg.id}`,
         {
           method: 'PUT',
           headers: {
@@ -27,8 +23,7 @@ function DiseaseItem({ disease }) {
           },
           body: JSON.stringify({
             name,
-            description,
-            pathophysiologicalGoalIdList,
+            sanskritName,
             formulationIdList
           }),
         }
@@ -54,29 +49,17 @@ function DiseaseItem({ disease }) {
         <>
           <h2 className="text-lg font-medium">
             <span className="font-bold">Name:</span>{' '}
-            <textarea
+            <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="border border-gray-400 p-1 rounded-sm"
-              rows={1}
-              style={{ width: '1000px' }}
-            />
-          </h2>
-          <h2 className="text-lg font-medium">
-            <span className="font-bold">Description:</span>{' '}
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="border border-gray-400 p-1 rounded-sm"
-              rows={1}
-              style={{ width: '1000px' }}
             />
           </h2>
           <p className="text-lg font-medium">
-            <span className="font-bold"> PathophysiologicalGoalIdList:</span>{' '}
+            <span className="font-bold">Sanskrit Name:</span>{' '}
             <textarea
-              value={pathophysiologicalGoalIdList}
-              onChange={(e) => setPathophysiologicalGoalIdList(e.target.value)}
+              value={sanskritName}
+              onChange={(e) => setSanskritName(e.target.value)}
               className="border border-gray-400 p-1 rounded-sm"
               rows={1}
               style={{ width: '1000px' }}
@@ -108,18 +91,13 @@ function DiseaseItem({ disease }) {
             <p className="border border-gray-400 p-1 rounded-sm">{name}</p>
           </h2>
           <h2 className="text-lg font-medium">
-            <span className="font-bold"> Description:</span>
-            <p className="border border-gray-400 p-1 rounded-sm">{description}</p>
+            <span className="font-bold">Sanskrit Name:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{sanskritName}</p>
           </h2>
-          <p className="text-lg font-medium">
-            <span className="font-bold">PathophysiologicalGoalIdList: </span>
-            <p className="border border-gray-400 p-1 rounded-sm"> {pathophysiologicalGoalIdList}</p>
-          </p>
-          <p className="text-lg font-medium">
-            <span className="font-bold">Formulation Id List:</span>
+          <h2 className="text-lg font-medium">
+            <span className="font-bold">Formulation ID List:</span>
             <p className="border border-gray-400 p-1 rounded-sm">{formulationIdList}</p>
-          </p>
-
+          </h2>
           <div className="flex justify-end space-x-4 mt-4">
             <button
               className="bg-blue-500 text-white py-2 px-4 rounded-md"
@@ -140,4 +118,4 @@ function DiseaseItem({ disease }) {
   )
 }
 
-export default DiseaseItem
+export default PpgItem

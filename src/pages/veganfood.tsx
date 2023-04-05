@@ -1,30 +1,31 @@
 import React, { ReactElement, useState } from 'react'
-import BaseButton from '../components/BaseButton'
-import LayoutAuthenticated from '../layouts/Authenticated'
+import { mdiUpload, mdiSearchWeb } from '@mdi/js'
 import SectionMain from '../components/SectionMain'
 import CardBox from '../components/CardBox'
-import DiseaseItem from '../components/DiseaseItem'
-import { useSampleDisease } from '../hooks/sampleData'
-import { Disease } from '../interfaces'
-import { mdiSearchWeb, mdiUpload } from '@mdi/js'
+import BaseButton from '../components/BaseButton'
+import LayoutAuthenticated from '../layouts/Authenticated'
+import VeganFoodItem from '../components/VeganFoodItem'
+import { useSampleVeganFood } from '../hooks/sampleData'
+import { VeganFood } from '../interfaces'
+
 const TablesPage = () => {
   const [searchOption, setSearchOption] = useState('')
-  const [selectedFile, setSelectedFile] = useState(null)
   const [searchId, setSearchId] = useState('')
+  const [selectedFile, setSelectedFile] = useState(null)
 
   const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const diseaseCsvFile = event.target.files?.[0]
-    setSelectedFile(diseaseCsvFile)
+    const veganFoodCsvFile = event.target.files?.[0]
+    setSelectedFile(veganFoodCsvFile)
   }
 
   const handleUploadButtonClick = async () => {
     if (selectedFile) {
       const formData = new FormData()
-      formData.append('diseaseCsvFile', selectedFile)
+      formData.append('veganFoodCsvFile', selectedFile)
 
       try {
         const response = await fetch(
-          'http://3.13.92.74:30009/master-data/admin/disease/disease.csv',
+          'http://3.13.92.74:30009/master-data/admin/vegan-food/vegan-food.csv',
           {
             method: 'POST',
             body: formData,
@@ -44,10 +45,9 @@ const TablesPage = () => {
       }
     }
   }
-  
   const [pageNumber, setPageNumber] = useState(0)
 
-  const { disease } = useSampleDisease(pageNumber)
+  const { veganfood } = useSampleVeganFood(pageNumber)
   const handlePrevClick = () => {
     setPageNumber(pageNumber - 1)
   }
@@ -55,17 +55,15 @@ const TablesPage = () => {
     setPageNumber(pageNumber + 1)
   }
 
-  const originalData = disease && disease.response ? disease.response : []
-  const totalPages = disease && disease.totalPages ? disease.totalPages : 0
+  const originalData = veganfood && veganfood.response ? veganfood.response : []
+  const totalPages = veganfood && veganfood.totalPages ? veganfood.totalPages : 0
   const [data, setData] = useState([])
-  
-
   const handleSearchClick = async () => {
     try {
       let url
       if (searchOption === 'id') {
         if (searchId) {
-          url = `http://3.13.92.74:30009/master-data/admin/disease/id/${searchId}`
+          url = `http://3.13.92.74:30009/master-data/admin/vegan-food/id/${searchId}`
           const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -73,9 +71,9 @@ const TablesPage = () => {
             },
           })
           if (response.ok) {
-            const disease = await response.json()
-            console.log(disease)
-            setData([disease.response])
+            const veganfood = await response.json()
+            console.log(veganfood)
+            setData([veganfood.response])
           } else {
             console.error('Error searching for formulations')
           }
@@ -84,7 +82,7 @@ const TablesPage = () => {
           return
         }
       } else if (searchOption == 'name') {
-        url = `http://3.13.92.74:30009/master-data/admin/disease/name/${searchId}`
+        url = `http://3.13.92.74:30009/master-data/admin/vegan-foodt/name/${searchId}`
         const response = await fetch(url, {
           method: 'GET',
           headers: {
@@ -92,14 +90,14 @@ const TablesPage = () => {
           },
         })
         if (response.ok) {
-          const disease = await response.json()
-          console.log(disease)
-          setData([disease.response])
+          const veganfood = await response.json()
+          console.log(veganfood)
+          setData([veganfood.response])
         } else {
           console.error('Error searching for formulations')
         }
       } else {
-        url = `http://3.13.92.74:30009/master-data/admin/disease/regex/name/${searchId}`
+        url = `http://3.13.92.74:30009/master-data/admin/vegan-food/regex/name/${searchId}`
         const response = await fetch(url, {
           method: 'GET',
           headers: {
@@ -107,9 +105,9 @@ const TablesPage = () => {
           },
         })
         if (response.ok) {
-          const disease = await response.json()
-          console.log(disease)
-          setData([disease.response[0]])
+          const veganfood = await response.json()
+          console.log(veganfood)
+          setData([veganfood.response[0]])
         } else {
           console.error('Error searching for formulations')
         }
@@ -122,7 +120,7 @@ const TablesPage = () => {
   return (
     <>
       <SectionMain>
-        <CardBox className=' className=" bg-gradient-to-tr from-yellow-500 via-orange-300 to-yellow-500 mb-6 '>
+        <CardBox className=" bg-gradient-to-tr from-yellow-500 via-green-300 to-yellow-500 mb-6 ">
           <div className="flex justify-between">
             <div className="flex justify-end">
               <select
@@ -190,16 +188,17 @@ const TablesPage = () => {
             </div>
           </div>
         </CardBox>
+
         <CardBox className="mb-6">
           {searchId.length > 0
-            ? data.map((disease: Disease) => (
+            ? data.map((veganfood: VeganFood) => (
                 <CardBox className="mb-6">
-                  <DiseaseItem key={disease.id} disease={disease} />
+                  <VeganFoodItem key={veganfood.id} veganfood={veganfood} />
                 </CardBox>
               ))
-            : originalData.map((disease: Disease) => (
+            : originalData.map((veganfood:VeganFood) => (
                 <CardBox className="mb-6">
-                  <DiseaseItem key={disease.id} disease={disease} />
+                  <VeganFoodItem key={veganfood.id} veganfood={veganfood} />
                 </CardBox>
               ))}
         </CardBox>

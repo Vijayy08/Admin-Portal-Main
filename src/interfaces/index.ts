@@ -93,16 +93,94 @@ export type Yoga={
   status:number
   name:string
 }
-export type Surgery = {
+
+export type Oil = {
   id: string
   status: number
   name: string
+  description: string
 }
-export type Symptom = {
+
+export type Pulses = {
   id: string
   status: number
   name: string
+  description: string
 }
+
+export type NonVeg = {
+  id: string
+  status: number
+  name: string
+  description:string
+}
+export type Fruit = {
+  id: string
+  status: number
+  name: string
+  description: string
+}
+export type PPG = {
+  id: string
+  status: number
+  name: string
+  sanskritName: string
+  dietIdList: null | any[]
+  yogadList: null | any[]
+  formulationIdList: string[]
+  lifestyleIdList: null | any[]
+  dietList: null | any[]
+  formulationList: null | any[]
+  lifestyleList: null | any[]
+}
+export type Vegetable = {
+  id: string
+  status: number
+  name: string
+  description: string
+}
+export type OtherFood = {
+  id: string
+  status: number
+  name: string
+  description: string
+}
+export type Dairy = {
+  id: string
+  status: number
+  name: string
+  description: string
+}
+ export type Spice = {
+   id: string
+   status: number
+   name: string
+   description: string
+ }
+ export type VeganFood = {
+   id: string
+   status: number
+   name: string
+   description: string
+ }
+ export type Sweetner = {
+   id: string
+   status: number
+   name: string
+ }
+ export type Cereal = {
+   id: string
+   status: number
+   name: string
+   description: string
+ }
+ export type WeekDiet = {
+   id: string
+   status: number
+   name: string
+   pathophysiologyGoalIdList:string[]
+ }
+
 export type Disease = {
   id: string
   status: number

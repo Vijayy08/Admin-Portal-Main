@@ -14,10 +14,33 @@ function DietItem({ diet }) {
     setEditing(true)
   }
 
-  const handleUpdateClick = () => {
-    // call an API to update the medicine information here
-    setEditing(false)
-  }
+ const handleUpdateClick = async () => {
+   try {
+     const response = await fetch(
+       `http://3.13.92.74:30009/master-data/admin/diet/id/${diet.id}`,
+       {
+         method: 'PUT',
+         headers: {
+           'Content-Type': 'application/json',
+           'X-USER-ID': '1',
+         },
+         body: JSON.stringify({
+           name,
+           targetAim,
+           breakfast
+         }),
+       }
+     )
+
+     if (!response.ok) {
+       throw new Error('Failed to update the data')
+     }
+
+     setEditing(false)
+   } catch (error) {
+     console.error(error)
+   }
+ }
 
   const handleDeleteClick = () => {
     // call an API to delete the medicine here
