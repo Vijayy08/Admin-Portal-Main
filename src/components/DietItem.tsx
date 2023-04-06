@@ -13,7 +13,9 @@ function DietItem({ diet }) {
   const handleEditClick = () => {
     setEditing(true)
   }
-
+ const handleCancelClick = () => {
+   setEditing(false)
+ }
  const handleUpdateClick = async () => {
    try {
      const response = await fetch(
@@ -232,6 +234,12 @@ function DietItem({ diet }) {
               onClick={handleUpdateClick}
             >
               Update
+            </button>
+            <button
+              className="bg-green-500 text-white py-2 px-4 rounded-md"
+              onClick={handleCancelClick}
+            >
+              Cancel
             </button>
           </div>
         </>

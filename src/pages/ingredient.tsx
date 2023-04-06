@@ -217,6 +217,12 @@ const handleSearchClick = async () => {
              Prev
            </button>
            <button
+             className="mr-2 px-4 py-2 rounded-md bg-orange-600 text-white-600 hover:bg-orange-600 focus:bg-orange-600 focus:outline-none"
+             disabled={pageNumber === 0}
+           >
+             {pageNumber}
+           </button>
+           <button
              className="px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"
              onClick={handleNextClick}
              disabled={pageNumber === totalPages - 1}

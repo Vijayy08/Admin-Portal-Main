@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import PpgItem from './PpgItem'
+
 
 function WeekDietItem({ weekdiet }) {
   const [editing, setEditing] = useState(false)
@@ -11,8 +11,11 @@ function WeekDietItem({ weekdiet }) {
   const handleEditClick = () => {
     setEditing(true)
   }
-
+   const handleCancelClick = () => {
+     setEditing(false)
+   }
   const handleUpdateClick = async () => {
+    const pathophysiologyGoalIdList= ppgIdList.split(',')
     try {
       const response = await fetch(
         `http://3.13.92.74:30009/master-data/admin/week-diet/id/${weekdiet.id}`,
@@ -24,7 +27,7 @@ function WeekDietItem({ weekdiet }) {
           },
           body: JSON.stringify({
             name,
-            ppgIdList
+            pathophysiologyGoalIdList
           }),
         }
       )
@@ -72,6 +75,12 @@ function WeekDietItem({ weekdiet }) {
               onClick={handleUpdateClick}
             >
               Update
+            </button>
+            <button
+              className="bg-green-500 text-white py-2 px-4 rounded-md"
+              onClick={handleCancelClick}
+            >
+             Cancel
             </button>
           </div>
         </>

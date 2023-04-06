@@ -7,7 +7,9 @@ const [description, setDescription] = useState(nonveg.description)
   const handleEditClick = () => {
     setEditing(true)
   }
-
+  const handleCancelClick = () => {
+    setEditing(false)
+  }
   // const handleUpdateClick = () => {
   //   // call an API to update the medicine information here
   //   setEditing(false)
@@ -71,6 +73,12 @@ const [description, setDescription] = useState(nonveg.description)
               onClick={handleUpdateClick}
             >
               Update
+            </button>
+            <button
+              className="bg-green-500 text-white py-2 px-4 rounded-md"
+              onClick={handleCancelClick}
+            >
+              Cancel
             </button>
           </div>
         </>

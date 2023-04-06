@@ -18,8 +18,9 @@ const menuAside: MenuAsideItem[] = [
     label: 'MasterData',
     icon: mdiTable,
     menu: [
-      { href: '/formulation', label: 'Formulation', icon: mdiMedication },
       { href: '/ingredient', label: 'Ingredient', icon: mdiLeaf },
+      { href: '/formulation', label: 'Formulation', icon: mdiMedication },
+
       { href: '/diet', label: 'Diet', icon: mdiFood },
       { href: '/oil', label: 'Oil', icon: mdiOil },
       { href: '/disease', label: 'Disease', icon: mdiMedication },
@@ -29,8 +30,8 @@ const menuAside: MenuAsideItem[] = [
       { href: '/fruit', label: 'Fruit', icon: mdiFood },
       { href: '/yoga', label: 'Yoga', icon: mdiYoga },
       { href: '/vegetable', label: 'Vegetable', icon: mdiLeafCircle },
-      { href: '/otherFood', label: 'OtherFood', icon: mdiFood },
-      { href: '/diary', label: 'Diary', icon: mdiCow },
+      { href: '/otherfood', label: 'OtherFood', icon: mdiFood },
+      { href: '/dairy', label: 'Dairy', icon: mdiCow },
       { href: '/spice', label: 'Spice', icon: mdiFood },
       { href: '/veganfood', label: 'VeganFood', icon: mdiFood },
 

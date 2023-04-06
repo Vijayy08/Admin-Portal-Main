@@ -6,16 +6,23 @@ function FormulationItem({ formulation }) {
   const [shortDescription, setShortdescription] = useState(formulation.shortDescription)
   const [longDescription, setLongdescription] = useState(formulation.longDescription)
   const [thumbnailImage, setThumbnailImage] = useState(formulation.thumbnailImage)
-  const [ingredientIdList, setIngredientIdList] = useState(
+  const [igIdList, setIgIdList] = useState(
     formulation.ingredientIdList ? formulation.ingredientIdList.join(',') : ''
   )
-  const [metaData,setMetaData]=useState(formulation.metaData?formulation.metaData.sellerProductId:'')
-  const [imageList,setImageList]=useState(formulation.imageList?formulation.imageList.join(','):'')
+  const [sellerProductId,setSellerProductId]=useState(formulation.metaData?formulation.metaData.sellerProductId:'')
+  const [igList,setIgList]=useState(formulation.imageList?formulation.imageList.join(','):'')
   const handleEditClick = () => {
     setEditing(true)
   }
-
+  const handleCancelClick = () => {
+    setEditing(false)
+  }
   const handleUpdateClick = async () => {
+    let ingredientIdList=igIdList.split(',')
+    let imageList=igList.split(',')
+    let metaData=formulation.metaData
+     metaData.sellerProductId=sellerProductId
+
     try {
       const response = await fetch(
         `http://3.13.92.74:30009/master-data/admin/formulation/id/${formulation.id}`,
@@ -29,10 +36,10 @@ function FormulationItem({ formulation }) {
             name,
             shortDescription,
             longDescription,
-            thumbnailImage,
             ingredientIdList,
             metaData,
-            imageList
+             imageList,
+            thumbnailImage,
           }),
         }
       )
@@ -98,8 +105,8 @@ function FormulationItem({ formulation }) {
           <p className="text-lg font-medium">
             <span className="font-bold">Ingredient List:</span>{' '}
             <textarea
-              value={ingredientIdList}
-              onChange={(e) => setIngredientIdList(e.target.value)}
+              value={igIdList}
+              onChange={(e) => setIgIdList(e.target.value)}
               className="border border-gray-400 p-1 rounded-sm"
               rows={4}
               style={{ width: '1000px' }}
@@ -108,8 +115,8 @@ function FormulationItem({ formulation }) {
           <p className="text-lg font-medium">
             <span className="font-bold">Seller Product ID:</span>{' '}
             <textarea
-              value={metaData}
-              onChange={(e) => setMetaData(e.target.value)}
+              value={sellerProductId}
+              onChange={(e) => setSellerProductId(e.target.value)}
               className="border border-gray-400 p-1 rounded-sm"
               rows={1}
               style={{ width: '1000px' }}
@@ -118,8 +125,8 @@ function FormulationItem({ formulation }) {
           <p className="text-lg font-medium">
             <span className="font-bold">Image List:</span>{' '}
             <textarea
-              value={imageList}
-              onChange={(e) => setImageList(e.target.value)}
+              value={igList}
+              onChange={(e) => setIgList(e.target.value)}
               className="border border-gray-400 p-1 rounded-sm"
               rows={1}
               style={{ width: '1000px' }}
@@ -131,6 +138,12 @@ function FormulationItem({ formulation }) {
               onClick={handleUpdateClick}
             >
               Update
+            </button>
+            <button
+              className="bg-green-500 text-white py-2 px-4 rounded-md"
+              onClick={handleCancelClick}
+            >
+              Cancel
             </button>
           </div>
         </>
@@ -154,15 +167,15 @@ function FormulationItem({ formulation }) {
           </h2>
           <h2 className="text-lg font-medium">
             <span className="font-bold">Ingredient IDs:</span>
-            <p className="border border-gray-400 p-1 rounded-sm">{ingredientIdList}</p>
+            <p className="border border-gray-400 p-1 rounded-sm">{igIdList}</p>
           </h2>
           <h2 className="text-lg font-medium">
             <span className="font-bold">Seller Product ID:</span>
-            <p className="border border-gray-400 p-1 rounded-sm">{metaData}</p>
+            <p className="border border-gray-400 p-1 rounded-sm">{sellerProductId}</p>
           </h2>
           <h2 className="text-lg font-medium">
             <span className="font-bold">Image List:</span>
-            <p className="border border-gray-400 p-1 rounded-sm">{imageList}</p>
+            <p className="border border-gray-400 p-1 rounded-sm">{igList}</p>
           </h2>
           <div className="flex justify-end space-x-4 mt-4">
             <button

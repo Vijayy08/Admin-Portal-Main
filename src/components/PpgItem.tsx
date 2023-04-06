@@ -4,14 +4,17 @@ function PpgItem({ ppg }) {
   const [editing, setEditing] = useState(false)
   const [name, setName] = useState(ppg.name)
  const [sanskritName, setSanskritName] = useState(ppg.sanskritName)
- const [formulationIdList, setFormulationIdList] = useState(
+ const [fIdList, setFIdList] = useState(
    ppg.formulationIdList ? ppg.formulationIdList.join(',') : ''
  )
   const handleEditClick = () => {
     setEditing(true)
   }
-
+  const handleCancelClick = () => {
+    setEditing(false)
+  }
   const handleUpdateClick = async () => {
+    const formulationIdList=fIdList.split(',')
     try {
       const response = await fetch(
         `http://3.13.92.74:30009/master-data/admin/pathophysiological-goal/id/${ppg.id}`,
@@ -68,8 +71,8 @@ function PpgItem({ ppg }) {
           <p className="text-lg font-medium">
             <span className="font-bold">Formulation Id List:</span>{' '}
             <textarea
-              value={formulationIdList}
-              onChange={(e) => setFormulationIdList(e.target.value)}
+              value={fIdList}
+              onChange={(e) => setFIdList(e.target.value)}
               className="border border-gray-400 p-1 rounded-sm"
               rows={4}
               style={{ width: '1000px' }}
@@ -81,6 +84,12 @@ function PpgItem({ ppg }) {
               onClick={handleUpdateClick}
             >
               Update
+            </button>
+            <button
+              className="bg-green-500 text-white py-2 px-4 rounded-md"
+              onClick={handleCancelClick}
+            >
+              Cancel
             </button>
           </div>
         </>
@@ -96,7 +105,7 @@ function PpgItem({ ppg }) {
           </h2>
           <h2 className="text-lg font-medium">
             <span className="font-bold">Formulation ID List:</span>
-            <p className="border border-gray-400 p-1 rounded-sm">{formulationIdList}</p>
+            <p className="border border-gray-400 p-1 rounded-sm">{fIdList}</p>
           </h2>
           <div className="flex justify-end space-x-4 mt-4">
             <button

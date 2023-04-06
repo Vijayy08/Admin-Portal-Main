@@ -7,15 +7,16 @@ function DiseaseItem({ disease }) {
   const [pathophysiologicalGoalIdList, setPathophysiologicalGoalIdList] = useState(
     disease.pathophysiologicalGoalIdList
   )
-  const [formulationIdList, setFormulationIdList] = useState(disease.formulationIdList?disease.formulationIdList.join(','):'')
+  const [fIdList, setFIdList] = useState(disease.formulationIdList?disease.formulationIdList.join(','):'')
   
-  
- 
   const handleEditClick = () => {
     setEditing(true)
   }
-
+   const handleCancelClick = () => {
+     setEditing(false)
+   }
   const handleUpdateClick = async () => {
+    const formulationIdList=fIdList.split(',')
     try {
       const response = await fetch(
         `http://3.13.92.74:30009/master-data/admin/disease/id/${disease.id}`,
@@ -85,8 +86,8 @@ function DiseaseItem({ disease }) {
           <p className="text-lg font-medium">
             <span className="font-bold">Formulation Id List:</span>{' '}
             <textarea
-              value={formulationIdList}
-              onChange={(e) => setFormulationIdList(e.target.value)}
+              value={fIdList}
+              onChange={(e) => setFIdList(e.target.value)}
               className="border border-gray-400 p-1 rounded-sm"
               rows={4}
               style={{ width: '1000px' }}
@@ -98,6 +99,13 @@ function DiseaseItem({ disease }) {
               onClick={handleUpdateClick}
             >
               Update
+            </button>
+
+            <button
+              className="bg-green-500 text-white py-2 px-4 rounded-md"
+              onClick={handleCancelClick}
+            >
+              Cancel
             </button>
           </div>
         </>
@@ -117,7 +125,7 @@ function DiseaseItem({ disease }) {
           </p>
           <p className="text-lg font-medium">
             <span className="font-bold">Formulation Id List:</span>
-            <p className="border border-gray-400 p-1 rounded-sm">{formulationIdList}</p>
+            <p className="border border-gray-400 p-1 rounded-sm">{fIdList}</p>
           </p>
 
           <div className="flex justify-end space-x-4 mt-4">
