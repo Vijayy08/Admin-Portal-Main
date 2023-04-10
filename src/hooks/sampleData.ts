@@ -247,7 +247,7 @@ export const useSampleWeekDiet = (pageNumber: number) => {
     fetcher
   )
   const weekdiet = data ?? []
-  console.log(weekdiet)
+  
   return {
    weekdiet,
     isLoading: !error && !data,

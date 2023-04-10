@@ -110,7 +110,7 @@ const handleSearchClick = async () => {
         if (response.ok) {
           const ingredient = await response.json()
           console.log(ingredient)
-          setData([ingredient.response[0]])
+          setData(ingredient.response)
         } else {
           console.error('Error searching for formulations')
         }
@@ -124,7 +124,8 @@ const handleSearchClick = async () => {
  return (
    <>
      <SectionMain>
-       <CardBox className=" bg-gradient-to-tr from-yellow-500 via-green-300 to-yellow-500 mb-6 ">
+       <CardBox className=" bg-gradient-to-tr from-gray-500 via-gray-500 to-gray-500 mb-6 ">
+        
          <div className="flex justify-between">
            <div className="flex justify-end">
              <select
@@ -187,7 +188,7 @@ const handleSearchClick = async () => {
                label="Upload"
                icon={mdiUpload}
                onClick={handleUploadButtonClick}
-               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+               className="bg-[#1da1f2] hover:bg-[#7dd3fc] text-white font-bold py-2 px-4 rounded"
              />
            </div>
          </div>

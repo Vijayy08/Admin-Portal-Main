@@ -20,7 +20,6 @@ const menuAside: MenuAsideItem[] = [
     menu: [
       { href: '/ingredient', label: 'Ingredient', icon: mdiLeaf },
       { href: '/formulation', label: 'Formulation', icon: mdiMedication },
-
       { href: '/diet', label: 'Diet', icon: mdiFood },
       { href: '/oil', label: 'Oil', icon: mdiOil },
       { href: '/disease', label: 'Disease', icon: mdiMedication },

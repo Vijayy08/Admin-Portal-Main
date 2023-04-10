@@ -111,26 +111,13 @@ const TablesPage = () => {
         })
         if (response.ok) {
           const formulation = await response.json()
-          console.log(formulation)
-          setData([formulation.response[0]])
+          console.log(formulation.response)
+          setData(formulation.response)
         } else {
           console.error('Error searching for formulations')
         }
       }
-      // const response = await fetch(url, {
-      //   method: 'GET',
-      //   headers: {
-          
-      //     'X-USER-ID': '1',
-      //   },
-      // })
-      // if (response.ok) {
-      //   const formulation = await response.json()
-      //     console.log(formulation)
-      //    setData([formulation.response])
-      // } else {
-      //   console.error('Error searching for formulations')
-      // }
+      
     } catch (error) {
       console.error(error)
     }
@@ -223,7 +210,7 @@ const TablesPage = () => {
               ))}
         </CardBox>
         <CardBox>
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-end  mt-6">
             <button
               className="mr-2 px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"
               onClick={handlePrevClick}
@@ -231,6 +218,12 @@ const TablesPage = () => {
               style={{ opacity: pageNumber === 0 ? 0.5 : 1 }}
             >
               Prev
+            </button>
+            <button
+              className="mr-2 px-4 py-2 rounded-md bg-orange-600 text-white-600 hover:bg-orange-600 focus:bg-orange-600 focus:outline-none"
+              disabled={pageNumber === 0}
+            >
+              {pageNumber}
             </button>
             <button
               className="px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"

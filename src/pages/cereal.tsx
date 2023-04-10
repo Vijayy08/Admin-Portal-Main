@@ -107,7 +107,7 @@ const TablesPage = () => {
         if (response.ok) {
           const cereal = await response.json()
           console.log(cereal)
-          setData([cereal.response[0]])
+          setData(cereal.response)
         } else {
           console.error('Error searching for formulations')
         }
@@ -203,7 +203,7 @@ const TablesPage = () => {
               ))}
         </CardBox>
         <CardBox>
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-end  mt-6">
             <button
               className="mr-2 px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"
               onClick={handlePrevClick}

@@ -7,6 +7,7 @@ import LayoutAuthenticated from '../layouts/Authenticated'
 import WeekDietItem from '../components/WeekDietItem'
 import { useSampleWeekDiet } from '../hooks/sampleData'
 import { WeekDiet } from '../interfaces'
+import { original } from '@reduxjs/toolkit'
 
 const TablesPage = () => {
   const [searchOption, setSearchOption] = useState('')
@@ -106,8 +107,8 @@ const TablesPage = () => {
         })
         if (response.ok) {
           const weekdiet = await response.json()
-          console.log(weekdiet)
-          setData([weekdiet.response[0]])
+        
+          setData(weekdiet.response)
         } else {
           console.error('Error searching for formulations')
         }
