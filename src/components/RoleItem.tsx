@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 
-function DairyItem({ dairy }) {
+function RoleItem({ role }) {
   const [editing, setEditing] = useState(false)
-  const [name, setName] = useState(dairy.name)
-  const [description, setDescription] = useState(dairy.description)
+  const [name, setName] = useState(role.name)
+  const [description, setDescription] = useState(role.description)
+  const [permissionList,setPermissionList]=useState(role.permissionList)
   const handleEditClick = () => {
     setEditing(true)
   }
-
   const handleCancelClick = () => {
     setEditing(false)
   }
+ 
   const handleUpdateClick = async () => {
     try {
       const response = await fetch(
-        `http://3.13.92.74:30009/master-data/admin/dairy/id/${dairy.id}`,
+        `http://3.13.92.74:30001/acl/admin/role/id/${role.id}`,
         {
           method: 'PUT',
           headers: {
@@ -62,6 +63,14 @@ function DairyItem({ dairy }) {
               className="border border-gray-400 p-1 rounded-sm"
             />
           </h2>
+          <h2 className="text-lg font-medium">
+            <span className="font-bold">Permission List:</span>{' '}
+            <input
+              value={permissionList}
+              onChange={(e) => setPermissionList(e.target.value)}
+              className="border border-gray-400 p-1 rounded-sm"
+            />
+          </h2>
 
           <div className="flex justify-end space-x-4 mt-4">
             <button
@@ -88,6 +97,10 @@ function DairyItem({ dairy }) {
             <span className="font-bold">Description:</span>
             <p className="border border-gray-400 p-1 rounded-sm">{description}</p>
           </h2>
+          <h2 className="text-lg font-medium">
+            <span className="font-bold">Permission List:</span>
+            <p className="border border-gray-400 p-1 rounded-sm">{permissionList}</p>
+          </h2>
 
           <div className="flex justify-end space-x-4 mt-4">
             <button
@@ -109,4 +122,4 @@ function DairyItem({ dairy }) {
   )
 }
 
-export default DairyItem
+export default RoleItem

@@ -174,6 +174,20 @@ export type Dairy = {
    name: string
    description: string
  }
+  export type Role = {
+    id: string
+    status: number
+    name: string
+    description: string
+    permissionList:string[]
+  }
+  export type Permission = {
+    id: string
+    status: number
+    name: string
+    description: string
+    
+  }
  export type WeekDiet = {
    id: string
    status: number

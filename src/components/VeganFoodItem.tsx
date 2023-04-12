@@ -65,13 +65,13 @@ function VeganFoodItem({ veganfood }) {
 
           <div className="flex justify-end space-x-4 mt-4">
             <button
-              className="bg-green-500 text-white py-2 px-4 rounded-md"
+              className="bg-blue-500 text-white py-2 px-4 rounded-md"
               onClick={handleUpdateClick}
             >
               Update
             </button>
             <button
-              className="bg-green-500 text-white py-2 px-4 rounded-md"
+              className="bg-blue-500 text-white py-2 px-4 rounded-md"
               onClick={handleCancelClick}
             >
               Cancel

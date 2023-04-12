@@ -185,7 +185,7 @@ const TablesPage = () => {
                 label="Upload"
                 icon={mdiUpload}
                 onClick={handleUploadButtonClick}
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               />
             </div>
           </div>
@@ -206,7 +206,7 @@ const TablesPage = () => {
         <CardBox>
           <div className="flex justify-end  mt-6">
             <button
-              className="mr-2 px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"
+              className="mr-2 px-4 py-2 rounded-md bg-blue-400 text-white-700 hover:bg-blue-500 focus:bg-blue-600 focus:outline-none"
               onClick={handlePrevClick}
               disabled={pageNumber === 0}
               style={{ opacity: pageNumber === 0 ? 0.5 : 1 }}
@@ -214,13 +214,13 @@ const TablesPage = () => {
               Prev
             </button>
             <button
-              className="mr-2 px-4 py-2 rounded-md bg-orange-600 text-white-600 hover:bg-orange-600 focus:bg-orange-600 focus:outline-none"
+              className="mr-2 px-4 py-2 rounded-md bg-blue-600 text-white-600 hover:bg-blue-600 focus:bg-blue-600 focus:outline-none"
               disabled={pageNumber === 0}
             >
               {pageNumber}
             </button>
             <button
-              className="px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"
+              className="px-4 py-2 rounded-md bg-blue-400 text-white-700 hover:bg-blue-500 focus:bg-blue-600 focus:outline-none"
               onClick={handleNextClick}
               disabled={pageNumber === totalPages - 1}
               style={{ opacity: pageNumber === totalPages - 1 ? 0.5 : 1 }}

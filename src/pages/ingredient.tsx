@@ -124,73 +124,76 @@ const handleSearchClick = async () => {
  return (
    <>
      <SectionMain>
-       <CardBox className=" bg-gradient-to-tr from-gray-500 via-gray-500 to-gray-500 mb-6 ">
-        
+       <CardBox className="mb-6">
          <div className="flex justify-between">
-           <div className="flex justify-end">
-             <select
-               value={searchOption}
-               onChange={(e) => setSearchOption(e.target.value)}
-               className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none "
-               style={{ width: '200px' }}
-             >
-               <option value="">Select an option</option>
-               <option value="id">By ID</option>
-               <option value="name">By Name</option>
-               <option value="regex">By Regex</option>
-             </select>
-             {searchOption === 'id' && (
-               <div className="flex justify-end">
-                 <input
-                   type="text"
-                   placeholder="Enter ID"
-                   value={searchId}
-                   onChange={(e) => setSearchId(e.target.value)}
-                   className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
-                   style={{ width: '200px' }}
-                 />
-               </div>
-             )}
-             {searchOption === 'name' && (
-               <div className="flex justify-end">
-                 <input
-                   type="text"
-                   placeholder="Enter name"
-                   value={searchId}
-                   onChange={(e) => setSearchId(e.target.value)}
-                   className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
-                   style={{ width: '200px' }}
-                 />
-               </div>
-             )}
-             {searchOption === 'regex' && (
-               <div className="flex justify-end">
-                 <input
-                   type="text"
-                   placeholder="Enter regex"
-                   value={searchId}
-                   onChange={(e) => setSearchId(e.target.value)}
-                   className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
-                   style={{ width: '200px' }}
-                 />
-               </div>
-             )}
-             <BaseButton
-               label="Search"
-               icon={mdiSearchWeb}
-               onClick={handleSearchClick}
-               className="bg-[#1da1f2] hover:bg-[#7dd3fc] text-white font-bold py-2 px-4 rounded"
-             />
-           </div>
-           <div>
-             <input type="file" onChange={handleFileInputChange} />
-             <BaseButton
-               label="Upload"
-               icon={mdiUpload}
-               onClick={handleUploadButtonClick}
-               className="bg-[#1da1f2] hover:bg-[#7dd3fc] text-white font-bold py-2 px-4 rounded"
-             />
-           </div>
+           <CardBox className=" bg-gradient-to-tr from-gray-500 via-gray-500 to-gray-500 mb-6 ">
+             <div className="flex justify-end">
+               <select
+                 value={searchOption}
+                 onChange={(e) => setSearchOption(e.target.value)}
+                 className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none "
+                 style={{ width: '200px' }}
+               >
+                 <option value="">Select an option</option>
+                 <option value="id">By ID</option>
+                 <option value="name">By Name</option>
+                 <option value="regex">By Regex</option>
+               </select>
+               {searchOption === 'id' && (
+                 <div className="flex justify-end">
+                   <input
+                     type="text"
+                     placeholder="Enter ID"
+                     value={searchId}
+                     onChange={(e) => setSearchId(e.target.value)}
+                     className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
+                     style={{ width: '200px' }}
+                   />
+                 </div>
+               )}
+               {searchOption === 'name' && (
+                 <div className="flex justify-end">
+                   <input
+                     type="text"
+                     placeholder="Enter name"
+                     value={searchId}
+                     onChange={(e) => setSearchId(e.target.value)}
+                     className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
+                     style={{ width: '200px' }}
+                   />
+                 </div>
+               )}
+               {searchOption === 'regex' && (
+                 <div className="flex justify-end">
+                   <input
+                     type="text"
+                     placeholder="Enter regex"
+                     value={searchId}
+                     onChange={(e) => setSearchId(e.target.value)}
+                     className="bg-white border border-gray-400 rounded-full px-3 py-2 outline-none mr-4"
+                     style={{ width: '200px' }}
+                   />
+                 </div>
+               )}
+               <BaseButton
+                 label="Search"
+                 icon={mdiSearchWeb}
+                 onClick={handleSearchClick}
+                 className="bg-[#1da1f2] hover:bg-[#7dd3fc] text-white font-bold py-2 px-4 rounded"
+               />
+             </div>
+           </CardBox>
+           <CardBox className=" bg-gradient-to-tr from-gray-500 via-gray-500 to-gray-500 mb-6 ">
+             <div>
+               <input type="file" onChange={handleFileInputChange} />
+               <BaseButton
+                 label="Upload"
+                 icon={mdiUpload}
+                 onClick={handleUploadButtonClick}
+                 className="bg-[#1da1f2] hover:bg-[#7dd3fc] text-white font-bold py-2 px-4 rounded"
+               />
+             </div>
+           </CardBox>
          </div>
        </CardBox>
 
@@ -208,9 +211,9 @@ const handleSearchClick = async () => {
              ))}
        </CardBox>
        <CardBox>
-         <div className="flex justify-center mt-6">
+         <div className="flex justify-end  mt-6">
            <button
-             className="mr-2 px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"
+             className="mr-2 px-4 py-2 rounded-md bg-blue-400 text-white-700 hover:bg-blue-500 focus:bg-blue-600 focus:outline-none"
              onClick={handlePrevClick}
              disabled={pageNumber === 0}
              style={{ opacity: pageNumber === 0 ? 0.5 : 1 }}
@@ -218,13 +221,13 @@ const handleSearchClick = async () => {
              Prev
            </button>
            <button
-             className="mr-2 px-4 py-2 rounded-md bg-orange-600 text-white-600 hover:bg-orange-600 focus:bg-orange-600 focus:outline-none"
+             className="mr-2 px-4 py-2 rounded-md bg-blue-600 text-white-600 hover:bg-blue-600 focus:bg-blue-600 focus:outline-none"
              disabled={pageNumber === 0}
            >
              {pageNumber}
            </button>
            <button
-             className="px-4 py-2 rounded-md bg-orange-400 text-white-700 hover:bg-orange-500 focus:bg-orange-600 focus:outline-none"
+             className="px-4 py-2 rounded-md bg-blue-400 text-white-700 hover:bg-blue-500 focus:bg-blue-600 focus:outline-none"
              onClick={handleNextClick}
              disabled={pageNumber === totalPages - 1}
              style={{ opacity: pageNumber === totalPages - 1 ? 0.5 : 1 }}

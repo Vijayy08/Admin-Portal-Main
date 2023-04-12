@@ -1,32 +1,29 @@
 import React, { useState } from 'react'
 
-function DairyItem({ dairy }) {
+function PermissionItem({ permission }) {
   const [editing, setEditing] = useState(false)
-  const [name, setName] = useState(dairy.name)
-  const [description, setDescription] = useState(dairy.description)
+  const [name, setName] = useState(permission.name)
+  const [description, setDescription] = useState(permission.description)
   const handleEditClick = () => {
     setEditing(true)
   }
-
   const handleCancelClick = () => {
     setEditing(false)
   }
+
   const handleUpdateClick = async () => {
     try {
-      const response = await fetch(
-        `http://3.13.92.74:30009/master-data/admin/dairy/id/${dairy.id}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-USER-ID': '1',
-          },
-          body: JSON.stringify({
-            name,
-            description,
-          }),
-        }
-      )
+      const response = await fetch(`http://3.13.92.74:30001/acl/admin/permission/id/${permission.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-USER-ID': '1',
+        },
+        body: JSON.stringify({
+          name,
+          description,
+        }),
+      })
 
       if (!response.ok) {
         throw new Error('Failed to update the data')
@@ -109,4 +106,4 @@ function DairyItem({ dairy }) {
   )
 }
 
-export default DairyItem
+export default PermissionItem

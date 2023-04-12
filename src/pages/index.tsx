@@ -6,7 +6,7 @@ import CardBox from '../components/CardBox'
 import LayoutGuest from '../layouts/Guest'
 import SectionMain from '../components/SectionMain'
 import { StyleKey } from '../interfaces'
-import { gradientBgPurplePink } from '../colors'
+import { gradientBgPurplePink } from '../colors' 
 import { appTitle } from '../config'
 import { useAppDispatch } from '../stores/hooks'
 import { setDarkMode, setStyle } from '../stores/styleSlice'
@@ -25,7 +25,7 @@ const StyleSelect = () => {
 
     dispatch(setStyle(style))
 
-    router.push('/dashboard')
+    router.push('/login')
   }
 
   return (

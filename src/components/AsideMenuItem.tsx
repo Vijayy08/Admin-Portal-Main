@@ -8,7 +8,7 @@ import { MenuAsideItem } from '../interfaces'
 import { useAppSelector } from '../stores/hooks'
 import { useRouter } from 'next/router'
 
-type Props = {
+type Props = { 
   item: MenuAsideItem
   isDropdownList?: boolean
 }

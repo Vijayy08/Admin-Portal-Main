@@ -16,7 +16,7 @@ const initialState: MainState = {
 
   /* Field focus with ctrl+k (to register only once) */
   isFieldFocusRegistered: false,
-}
+} 
 
 export const mainSlice = createSlice({
   name: 'main',

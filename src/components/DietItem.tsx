@@ -4,12 +4,10 @@ function DietItem({ diet }) {
   const [editing, setEditing] = useState(false)
   const [name, setName] = useState(diet.name)
   const [targetAim, setTargetAim] = useState(diet.targetAim)
-  const [breakfast,setBreakfast]=useState(diet.vegan.breakfast)
-  const [lunch,setLunch]=useState(diet.vegan.lunch)
-  const [dinner,setDinner]=useState(diet.vegan.dinner)
-  const[vegbreakfast,setVegBreakfast]=useState(diet.vegetarian.breakfast)
-   const [veglunch, setVegLunch] = useState(diet.vegetarian.lunch)
-    const [vegdinner, setVegDinner] = useState(diet.vegetarian.dinner)
+  const [vegan,setVegan]=useState(diet.vegan)
+  
+  const[vegetarian,setVegetarian]=useState(diet.vegetarian)
+   
   const handleEditClick = () => {
     setEditing(true)
   }
@@ -29,7 +27,7 @@ function DietItem({ diet }) {
          body: JSON.stringify({
            name,
            targetAim,
-           breakfast
+           vegan
          }),
        }
      )
@@ -70,18 +68,18 @@ function DietItem({ diet }) {
           </h2>
           <h2 className="text-lg font-medium">
             <span className="font-bold">Vegan:</span> <br />
-            <span className="font-bold pl-5"> Breakfast:</span>
+            
             <div className="pl-10">
-              {breakfast.map((item, index) => (
+              {vegan.map((item, index) => (
                 <div key={index}>
                   <h2>
                     <span className="font-bold ">Name:</span>{' '}
                     <input
                       value={item.name}
                       onChange={(e) => {
-                        const newBreakfast = [...breakfast]
+                        const newBreakfast = [...vegan]
                         newBreakfast[index].name = e.target.value
-                        setBreakfast(newBreakfast)
+                        setVegan(newBreakfast)
                       }}
                       className="border border-gray-400 p-1 rounded-sm"
                     />
@@ -91,9 +89,9 @@ function DietItem({ diet }) {
                     <input
                       value={item.totalServings}
                       onChange={(e) => {
-                        const newBreakfast = [...breakfast]
+                        const newBreakfast = [...vegan]
                         newBreakfast[index].totalServings = e.target.value
-                        setBreakfast(newBreakfast)
+                        setVegan(newBreakfast)
                       }}
                       className="border border-gray-400 p-1 rounded-sm"
                     />
@@ -108,9 +106,9 @@ function DietItem({ diet }) {
                             <input
                               value={nutrition.name}
                               onChange={(e) => {
-                                const newBreakfast = [...breakfast]
+                                const newBreakfast = [...vegan]
                                 newBreakfast[index].nutritionInfo[index].name = e.target.value
-                                setBreakfast(newBreakfast)
+                                setVegan(newBreakfast)
                               }}
                               className="border border-gray-400 p-1 rounded-sm"
                             />
@@ -120,9 +118,9 @@ function DietItem({ diet }) {
                             <input
                               value={nutrition.amount}
                               onChange={(e) => {
-                                const newBreakfast = [...breakfast]
+                                const newBreakfast = [...vegan]
                                 newBreakfast[index].nutritionInfo[index].amount = e.target.value
-                                setBreakfast(newBreakfast)
+                                setVegan(newBreakfast)
                               }}
                               className="border border-gray-400 p-1 rounded-sm"
                             />
@@ -132,10 +130,10 @@ function DietItem({ diet }) {
                             <input
                               value={nutrition.requiredAmount}
                               onChange={(e) => {
-                                const newBreakfast = [...breakfast]
+                                const newBreakfast = [...vegan]
                                 newBreakfast[index].nutritionInfo[index].requiredAmount =
                                   e.target.value
-                                setBreakfast(newBreakfast)
+                                setVegan(newBreakfast)
                               }}
                               className="border border-gray-400 p-1 rounded-sm"
                             />
@@ -150,18 +148,18 @@ function DietItem({ diet }) {
           </h2>
           <h2 className="text-lg font-medium">
             <span className="font-bold">Vegetarian:</span> <br />
-            <span className="font-bold pl-5"> Breakfast:</span>
-            <div className="pl-10">
-              {vegbreakfast.map((item, index) => (
+            
+            <div className="pl-5">
+              {vegetarian.map((item, index) => (
                 <div key={index}>
                   <h2>
                     <span className="font-bold ">Name:</span>{' '}
                     <input
                       value={item.name}
                       onChange={(e) => {
-                        const newBreakfast = [...vegbreakfast]
+                        const newBreakfast = [...vegetarian]
                         newBreakfast[index].name = e.target.value
-                        setVegBreakfast(newBreakfast)
+                        setVegetarian(newBreakfast)
                       }}
                       className="border border-gray-400 p-1 rounded-sm"
                     />
@@ -171,9 +169,9 @@ function DietItem({ diet }) {
                     <input
                       value={item.totalServings}
                       onChange={(e) => {
-                        const newBreakfast = [...vegbreakfast]
+                        const newBreakfast = [...vegetarian]
                         newBreakfast[index].totalServings = e.target.value
-                        setVegBreakfast(newBreakfast)
+                        setVegetarian(newBreakfast)
                       }}
                       className="border border-gray-400 p-1 rounded-sm"
                     />
@@ -188,9 +186,9 @@ function DietItem({ diet }) {
                             <input
                               value={nutrition.name}
                               onChange={(e) => {
-                                const newBreakfast = [...vegbreakfast]
+                                const newBreakfast = [...vegetarian]
                                 newBreakfast[index].nutritionInfo[index].name = e.target.value
-                                setVegBreakfast(newBreakfast)
+                                setVegetarian(newBreakfast)
                               }}
                               className="border border-gray-400 p-1 rounded-sm"
                             />
@@ -200,9 +198,9 @@ function DietItem({ diet }) {
                             <input
                               value={nutrition.amount}
                               onChange={(e) => {
-                                const newBreakfast = [...vegbreakfast]
+                                const newBreakfast = [...vegetarian]
                                 newBreakfast[index].nutritionInfo[index].amount = e.target.value
-                                setVegBreakfast(newBreakfast)
+                                setVegetarian(newBreakfast)
                               }}
                               className="border border-gray-400 p-1 rounded-sm"
                             />
@@ -212,10 +210,10 @@ function DietItem({ diet }) {
                             <input
                               value={nutrition.requiredAmount}
                               onChange={(e) => {
-                                const newBreakfast = [...vegbreakfast]
+                                const newBreakfast = [...vegetarian]
                                 newBreakfast[index].nutritionInfo[index].requiredAmount =
                                   e.target.value
-                                setVegBreakfast(newBreakfast)
+                                setVegetarian(newBreakfast)
                               }}
                               className="border border-gray-400 p-1 rounded-sm"
                             />
@@ -253,33 +251,19 @@ function DietItem({ diet }) {
           </h2>
           <h2 className="text-lg font-medium">
             <span className="font-bold">Vegan:</span> <br />
-            <span className="font-bold pl-5"> Breakfast:</span>
-            <div className="pl-10">
-              {breakfast && breakfast.map((item) => <Item key={item.name} item={item} />)}
+            
+            <div className="pl-5">
+              {vegan && vegan.map((item) => <Item key={item.name} item={item} />)}
             </div>
-            <span className="font-bold pl-5">Lunch:</span>
-            <div className="pl-10">
-              {lunch && lunch.map((item) => <Item key={item.name} item={item} />)}
-            </div>
-            <span className="font-bold pl-5">Dinner:</span>
-            <div className="pl-10">
-              {dinner && dinner.map((item) => <Item key={item.name} item={item} />)}
-            </div>
+            
           </h2>
           <h2 className="text-lg font-medium">
             <span className="font-bold">Vegetarian:</span> <br />
-            <span className="font-bold pl-5"> Breakfast:</span>
+           
             <div className="pl-10">
-              {vegbreakfast && vegbreakfast.map((item) => <Item key={item.name} item={item} />)}
+              {vegetarian && vegetarian.map((item) => <Item key={item.name} item={item} />)}
             </div>
-            <span className="font-bold pl-5">Lunch:</span>
-            <div className="pl-10">
-              {veglunch && veglunch.map((item) => <Item key={item.name} item={item} />)}
-            </div>
-            <span className="font-bold pl-5">Dinner:</span>
-            <div className="pl-10">
-              {vegdinner && vegdinner.map((item) => <Item key={item.name} item={item} />)}
-            </div>
+            
           </h2>
           <div className="flex justify-end space-x-4 mt-4">
             <button

@@ -104,7 +104,7 @@ const [data, setData] = useState([])
         if (response.ok) {
           const diet = await response.json()
           console.log(diet)
-          setData(diet.response)
+          setData(diet.response) 
         } else {
           console.error('Error searching for formulations')
         }

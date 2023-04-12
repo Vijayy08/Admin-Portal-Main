@@ -254,6 +254,26 @@ export const useSampleWeekDiet = (pageNumber: number) => {
     isError: error,
   }
 }
+export const useSampleRoles = () => {
+  const { data, error } = useSWR('http://3.13.92.74:30001/acl/admin/role', fetcher)
+  const role = data ?? []
+
+  return {
+    role,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+export const useSamplePermission = () => {
+  const { data, error } = useSWR('http://3.13.92.74:30001/acl/admin/permission', fetcher)
+  const permission = data ?? []
+
+  return {
+    permission,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
  export const useSampleLabels = () => {
    const { data, error } = useSWR('/admin-one-react-tailwind/data-sources/clients.json', fetcher)
    

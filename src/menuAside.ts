@@ -14,7 +14,15 @@ const menuAside: MenuAsideItem[] = [
     icon: mdiTable,
   },
   {
-    // href: '/new',
+    label: 'ACL',
+    icon: mdiTable,
+    menu: [
+      { href: '/user', label: 'User' },
+      { href: '/role', label: 'Role' },
+      { href: '/permission', label: 'Permission' },
+    ],
+  },
+  {
     label: 'MasterData',
     icon: mdiTable,
     menu: [
@@ -24,7 +32,7 @@ const menuAside: MenuAsideItem[] = [
       { href: '/oil', label: 'Oil', icon: mdiOil },
       { href: '/disease', label: 'Disease', icon: mdiMedication },
       { href: '/pulses', label: 'Pulses', icon: mdiFood },
-      { href: '/ppg', label: 'PathophysiologicalGoal', icon: mdiFood },
+      { href: '/pathophysiologicalgoal', label: 'PathophysiologicalGoal', icon: mdiFood },
       { href: '/nonveg', label: 'NonVeg', icon: mdiFoodDrumstick },
       { href: '/fruit', label: 'Fruit', icon: mdiFood },
       { href: '/yoga', label: 'Yoga', icon: mdiYoga },
@@ -40,45 +48,29 @@ const menuAside: MenuAsideItem[] = [
     ],
   },
 
-  {
-    href: '/login',
-    label: 'Login',
-    icon: mdiLock,
-  },
+  // {
+  //   href: '/login',
+  //   label: 'Login',
+  //   icon: mdiLock,
+  // },
 ]
-//  fetch('http://3.13.92.74:30001/acl/user/module',{headers:{'accept': 'application/json' , 'X-USER-ID': '1'}}) // Replace with your API endpoint
-//    .then((response) => response.json())
-//    .then((data) => {
-//      // Update menuAside array with submodules
-//      console.log(data)
-//      const masterDataMenuItem = menuAside.find((item) => item.label === 'MasterData')
-//      if (masterDataMenuItem) {
-//        masterDataMenuItem.menu = data.response.moduleList[0].subModuleList.map((subModule) => ({
-//          href: `/${subModule.name.toLowerCase()}`,
-//          label: subModule.name,
-//        }))
-//      }
-//    })
-//    .catch((error) => {
-//      console.error('Failed to fetch submodules for MasterData', error)
-//    })
-//  fetch('https://jsonplaceholder.typicode.com/users') // Replace with your API endpoint
-//    .then((response) => response.json())
-//    .then((data) => {
-//      // Update menuAside array with submodules
-//      console.log(data)
-//      const masterDataMenuItem = menuAside.find((item) => item.label === 'MasterData')
-//      if (masterDataMenuItem) {
-//        masterDataMenuItem.menu = data.map((subModule) => ({
-//          href: `/${subModule.name.toLowerCase()}`,
-//          label: subModule.name,
-//        }))
+ fetch('http://3.13.92.74:30001/acl/user/module',{headers:{'accept': 'application/json' , 'X-USER-ID': '1'}}) // Replace with your API endpoint
+   .then((response) => response.json())
+   .then((data) => {
+     // Update menuAside array with submodules
+     
+     const masterDataMenuItem = menuAside.find((item) => item.label === 'MasterData')
+     if (masterDataMenuItem) {
+       masterDataMenuItem.menu = data.response.moduleList[0].subModuleList.map((subModule) => ({
+         href: `/${subModule.name.toLowerCase()}`,
+         label: subModule.name,
+       }))
+     }
+   })
+   .catch((error) => {
+     console.error('Failed to fetch submodules for MasterData', error)
+   })
 
-//      }
-//    })
-//    .catch((error) => {
-//      console.error('Failed to fetch submodules for MasterData', error)
-//    })
 
 
 export default menuAside
