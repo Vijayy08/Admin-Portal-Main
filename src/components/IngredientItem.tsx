@@ -70,36 +70,36 @@ function IngredientItem({ ingredient }) {
                   <input value={sanskritName} onChange={(e) => setSanskritName(e.target.value)} />
                 </p>
               </h2>
-              <p className="text-lg font-medium">
+              <h2 className="text-lg font-medium">
                 <span className="font-bold"> Description:</span>{' '}
                 <p className="border border-gray-400 p-1 rounded-sm">
                   <input value={description} onChange={(e) => setDescription(e.target.value)} />
                 </p>
-              </p>
-              <p className="text-lg font-medium">
+              </h2>
+              <h2 className="text-lg font-medium">
                 <span className="font-bold"> Quantity:</span>{' '}
                 <p className="border border-gray-400 p-1 rounded-sm">
                   <input value={quantity} onChange={(e) => setQuantity(e.target.value)} />
                 </p>
-              </p>
-              <p className="text-lg font-medium">
+              </h2>
+              <h2 className="text-lg font-medium">
                 <span className="font-bold">Rasa:</span>{' '}
                 <p className="border border-gray-400 p-1 rounded-sm">
                   <input value={rasa} onChange={(e) => setRasa(e.target.value)} />
                 </p>
-              </p>
-              <p className="text-lg font-medium">
+              </h2>
+              <h2 className="text-lg font-medium">
                 <span className="font-bold">Guna:</span>{' '}
                 <p className="border border-gray-400 p-1 rounded-sm">
                   <input value={guna} onChange={(e) => setGuna(e.target.value)} />
                 </p>
-              </p>
-              <p className="text-lg font-medium">
+              </h2>
+              <h2 className="text-lg font-medium">
                 <span className="font-bold">Vipaka:</span>{' '}
                 <p className="border border-gray-400 p-1 rounded-sm">
                   <input value={vipaka} onChange={(e) => setVipaka(e.target.value)} />
                 </p>
-              </p>
+              </h2>
             </div>
             <div
               style={{
@@ -193,14 +193,14 @@ function IngredientItem({ ingredient }) {
                 <span className="font-bold">SanskritName:</span>
                 <p className="h-10 border border-gray-400 p-1 rounded-sm">{sanskritName}</p>
               </h2>
-              <p className="text-lg font-medium">
+              <h2 className="text-lg font-medium">
                 <span className="font-bold">Description: </span>
                 <p className="h-10 border border-gray-400 p-1 rounded-sm">{description}</p>
-              </p>
-              <p className="text-lg font-medium">
+              </h2>
+              <h2 className="text-lg font-medium">
                 <span className="font-bold">Quantity:</span>
                 <p className="h-10 border border-gray-400 p-1 rounded-sm">{quantity}</p>
-              </p>
+              </h2>
               {showDetails && (
                 <>
                   {/* <p className="text-lg font-medium">
@@ -211,18 +211,18 @@ function IngredientItem({ ingredient }) {
                     <span className="font-bold">Quantity:</span>
                     <p className="border border-gray-400 p-1 rounded-sm">{quantity}</p>
                   </p> */}
-                  <p className="text-lg font-medium">
+                  <h2 className="text-lg font-medium">
                     <span className="font-bold">Rasa:</span>
                     <p className="h-10 border border-gray-400 p-1 rounded-sm">{rasa}</p>
-                  </p>
-                  <p className="text-lg font-medium">
+                  </h2>
+                  <h2 className="text-lg font-medium">
                     <span className="font-bold">Guna:</span>
                     <p className="h-10 border border-gray-400 p-1 rounded-sm">{guna}</p>
-                  </p>
-                  <p className="text-lg font-medium">
+                  </h2>
+                  <h2 className="text-lg font-medium">
                     <span className="font-bold">Vipaka:</span>
                     <p className=" h-10 border border-gray-400 p-1 rounded-sm">{vipaka}</p>
-                  </p>
+                  </h2>
                   {/* <button
                     className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
                     onClick={() => setShowDetails(false)}

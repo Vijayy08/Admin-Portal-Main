@@ -188,6 +188,15 @@ export type Dairy = {
     description: string
     
   }
+  export type Module = {
+    id: string
+    status: number
+    name: string
+    description: string
+    moduleType: string
+    subModuleList: string[]
+  }
+  
  export type WeekDiet = {
    id: string
    status: number

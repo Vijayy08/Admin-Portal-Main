@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function RoleComponent(props) {
+function PermissionComponent(props) {
      const [name, setName] = useState('')
      const [description, setDescription] = useState('')
      const handleCancelClick = () => {
@@ -12,7 +12,7 @@ function RoleComponent(props) {
       description: description,
     };
    try {
-      const response = await fetch('http://3.13.92.74:30001/acl/admin/role', {
+      const response = await fetch('http://3.13.92.74:30001/acl/admin/permission', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,4 +81,4 @@ function RoleComponent(props) {
         </>
       )
 }
-export default RoleComponent
+export default PermissionComponent

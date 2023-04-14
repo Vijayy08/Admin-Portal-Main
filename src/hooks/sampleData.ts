@@ -274,6 +274,16 @@ export const useSamplePermission = () => {
     isError: error,
   }
 }
+export const useSampleModules= () => {
+  const { data, error } = useSWR('http://3.13.92.74:30001/acl/admin/module', fetcher)
+  const module = data ?? []
+
+  return {
+    module,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
  export const useSampleLabels = () => {
    const { data, error } = useSWR('/admin-one-react-tailwind/data-sources/clients.json', fetcher)
    

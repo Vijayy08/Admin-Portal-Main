@@ -15,7 +15,7 @@ const TablesPage = () => {
   const { role } = useSampleRoles()
   const [showComponent,setShowComponent]=useState(false);
   const originalData = role && role.response ? role.response : []
-  const handleSearchClick = async () => {
+   const handleSearchClick = async () => {
     try {
       let url
       if (searchOption === 'id') {
