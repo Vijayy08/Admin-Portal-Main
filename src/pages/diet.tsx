@@ -173,7 +173,7 @@ const [data, setData] = useState([])
                 label="Search"
                 icon={mdiSearchWeb}
                 onClick={handleSearchClick}
-                className="bg-[#1da1f2] hover:bg-[#7dd3fc] text-white font-bold py-2 px-4 rounded"
+                className="bg-blue-500 border-blue-500 hover:bg-[#7dd3fc] text-white font-bold py-2 px-4 rounded"
               />
             </div>
             <div>
@@ -182,7 +182,7 @@ const [data, setData] = useState([])
                 label="Upload"
                 icon={mdiUpload}
                 onClick={handleUploadButtonClick}
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-blue-500 border-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
               />
             </div>
           </div>

@@ -17,7 +17,7 @@ const StyleSelect = () => {
   dispatch(setDarkMode(false))
 
   const styles: StyleKey[] = ['white', 'basic']
-
+ 
   const router = useRouter()
 
   const handleStylePick = (e: React.MouseEvent, style: StyleKey) => {

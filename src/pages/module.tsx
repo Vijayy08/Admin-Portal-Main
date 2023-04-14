@@ -50,7 +50,6 @@ const TablesPage = () => {
             >
               <option value="">Select an option</option>
               <option value="id">By ID</option>
-             
             </select>
             {searchOption === 'id' && (
               <div className="flex justify-end">
@@ -81,7 +80,7 @@ const TablesPage = () => {
               label="Search"
               icon={mdiSearchWeb}
               onClick={handleSearchClick}
-              className="bg-[#1da1f2] hover:bg-[#7dd3fc] text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-500 border-blue-500 hover:bg-[#7dd3fc] text-white font-bold py-2 px-4 rounded"
             />
           </div>
         </CardBox>

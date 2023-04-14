@@ -5,7 +5,7 @@ type Props = {
   label?: string
   labelFor?: string
   help?: string
-  icons?: string[] | null[]
+  icons?: string[] | null[] 
   isBorderless?: boolean
   isTransparent?: boolean
   hasTextareaHeight?: boolean

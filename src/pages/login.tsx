@@ -29,12 +29,12 @@ export default function Error() {
       <SectionFullScreen bg="purplePink">
         <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
           <Formik
-            initialValues={{ login: 'john.doe', password: 'bG1sL9eQ1uD2sK3b', remember: true }}
+            initialValues={{ email: 'john.doe', password: 'bG1sL9eQ1uD2sK3b', remember: true }}
             onSubmit={() => handleSubmit()}
           >
             <Form>
-              <FormField label="Login" help="Please enter your login">
-                <Field name="login" />
+              <FormField label="Email" help="Please enter your email">
+                <Field name="email" />
               </FormField>
 
               <FormField label="Password" help="Please enter your password">

@@ -17,7 +17,7 @@ const menuAside: MenuAsideItem[] = [
     label: 'ACL',
     icon: mdiTable,
     menu: [
-      { href: '/user', label: 'User' },
+      { href: '/module', label: 'Module' },
       { href: '/role', label: 'Role' },
       { href: '/permission', label: 'Permission' },
     ],
